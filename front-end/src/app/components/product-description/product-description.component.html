@@ -1,0 +1,33 @@
+<div class="background">
+  <div class="container">
+    <div class="slider">
+      <img class="product-description-image" [src]="getCurrentSlideUrl()"/>
+      <img src="../../assets/icons/arrow-left-circle.svg" class="leftArrow" (click)="goToPrevious()" />
+      <img src="../../assets/icons/arrow-right-circle.svg" class="rightArrow" (click)="goToNext()" />
+    </div>
+      <div class="product-description-content">
+        <span class="product-description-title">{{ productTitle }}</span>
+        <span class="product-description-category">{{ productCategory }}</span>
+        <div class="price-location-wrapper">
+          <div class="product-description-price">{{ productPrice }} €</div>
+          <div class="product-description-location">
+            <img class="location-item" src="../../assets/icons/geo.svg"/>
+            {{ district }}
+          </div>
+        </div>
+        <hr class="product-description-line"/>
+        <span class="product-description-date">{{ createdAt | date: 'dd/MM/yy'}}</span>
+        <span class="product-description-desc">
+          {{ productDescription }}
+        </span>
+        <div class="product-description-contact">
+          <span id="contact-hint">Are you interested? Contact the seller.</span>
+          <img id="contact-icon" src="../../../assets/icons/mail.svg">  {{ contact }}
+        </div>
+        <!-- <span class="product-description-contact">{{ contact }}</span> -->
+      </div>
+  </div>
+</div>
+  
+  
+  

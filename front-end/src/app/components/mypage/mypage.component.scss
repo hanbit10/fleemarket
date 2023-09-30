@@ -1,0 +1,17 @@
+@import '../../../styles.scss';
+
+.myposts-container {
+  max-width: 1024px;
+  margin: 40px auto;
+}
+#mypost-title {
+  font-family: 'Poppins';
+  border-bottom: 0.5px solid $primary-color;
+  padding-left: 16px;
+}
+
+@media (min-width: 768px){
+  #mypost-title {
+    padding-left: 0;
+  }
+}

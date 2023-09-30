@@ -1,0 +1,20 @@
+.container{
+  position: sticky;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: double #e4d1d3;
+  font-size: 0.8rem;
+}
+.footer-container {
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    font-size: 1rem;
+    height: 120px;
+  }
+}

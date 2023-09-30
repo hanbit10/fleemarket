@@ -1,0 +1,12 @@
+<app-header></app-header>
+<app-product-description *ngIf="product" 
+  [productId]="product._id"
+  [productTitle]="product.title"
+  [productCategory]="product.category"
+  [productPrice]="product.price"
+  [district]="product.district"
+  [createdAt]="product.createdAt"
+  [productImage]="product.imageUrl"
+  [productDescription]="product.description"
+  [contact]="product.user.email"
+  ></app-product-description>

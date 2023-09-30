@@ -1,0 +1,72 @@
+@import '../../../styles.scss';
+
+.search-container {
+  margin: 16px;
+}
+.mobile-main-text {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: auto 0;
+}
+.mobile-main-text-ch {
+  font-size: 1.3rem;
+  font-weight: 900;
+  margin: 5px;
+}
+.mobile-main-image {
+  overflow: hidden;
+}
+input {
+  width: 100%;
+  padding: 8px;
+  border: 0.5px solid $primary-color;
+  border-radius: 10px;
+}
+
+@media (min-width: 768px) {
+  .nav-container {
+    background-color: $primary-color;
+    width: 100hv;
+  }
+  .avatar-container {
+    background-color: $primary-color;
+    max-width: 1280px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(100px, 540px));
+    justify-content: space-evenly;
+    margin: auto;
+    padding: 0 0 50px 0;
+  }
+  .avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .avatar-image {
+    max-width: 500px;
+  }
+  .avatar-text {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    color: $background-color;
+    line-height: 3.5rem;
+  }
+  .avatar-btn {
+    margin: 30px auto;
+    width: 250px;
+    height: 60px;
+    font-size: 1.3rem;
+    border-radius: 30px;
+    text-align: center;
+  }
+  .avatar-search-bar {
+    background-color: $secondary-color;
+    border: none;
+  }
+  .avatar-sell-btn {
+    background-color: $tertiary-color;
+    border: none;
+  }
+}

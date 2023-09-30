@@ -1,0 +1,31 @@
+<div class="container-fluid nav-container" >
+  <div *ngIf="screenMode=='web'" class="avatar-container">
+    <div class="avatar-wrapper">
+      <img class="avatar-image" src="../assets/images/Avatar_buyer.png" alt="Buyer Avatar">
+      <span class="avatar-text">You want to save?<br/>Every cent counts!</span>
+      <input class="avatar-btn avatar-search-bar" [(ngModel)]="searchInput" type="search" placeholder="Search..." (keydown.enter)="searchText()">
+    </div>
+    <div class="avatar-wrapper">
+      <img class="avatar-image" src="../assets/images/Avatar_seller.png" alt="Seller Avatar">
+      <span class="avatar-text">You want to sell?<br/>Start with every cent!</span>
+      <button class="avatar-btn avatar-sell-btn" type="button" [routerLink]="['/post']">Sell now</button>
+    </div>
+  </div>
+  <div *ngIf="screenMode=='mobile'" class="search-container">
+    <div class="row">
+      <div class="col-5 mobile-main-text">
+        <span class="mobile-main-text-ch">Save</span>
+        <span class="mobile-main-text-ch">your 1 cent</span>
+        <span class="mobile-main-text-ch">here :)</span>
+      </div>
+      <div class="col-7 mobile-main-image">
+        <img src="../assets/images/mobile-avatar.svg"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 search-bar">
+        <input [(ngModel)]="searchInput" type="search" placeholder="🔍 What do you need?" (keydown.enter)="searchText()"/>
+      </div>
+    </div>
+  </div>
+</div>

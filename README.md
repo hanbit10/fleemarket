@@ -1,27 +1,111 @@
-# Fleemarket
+# Gruppe11
+<br>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.4.
+![Semantic description of image](Design_System.jpg)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# EveryCent
+- WebApp für Online Flohmarkt
 
-## Code scaffolding
+## Technologies
+- Frontend: **Angular**
+- Backend:  **Node JS**
+- Database: **MongoDB**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Design 
 
-## Build
+### [Link for Mockup Design ](https://www.figma.com/file/pVUlarB3jvQJ339Hzii7xP/everycent?node-id=79%3A2&t=uLUPgowncZaLY1o9-1)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Funktionen
+### User Verwaltung
+- Register
+- Login
+- Meine Beiträge verwalten
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![Semantic description of image](Login.gif)
 
-## Running end-to-end tests
+<br>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Post Verwaltung
+- Create
+- Read
+- Update
+- Delete
 
-## Further help
+![Semantic description of image](Crud.gif)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+<br>
+
+### Responsive Design
+- Web version
+- Mobile version
+
+![Semantic description of image](Responsive.gif)
+
+
+<br>
+
+## Was jeder hat bisher gemacht 
+### Hyun Kim
+
+Frontend
+
+- Erstellen UI : Login Page / Signup Page / Header Component
+- Verbindungseinstellungen für den Anschluss des Client- und Server-Seite 
+
+Backend
+
+- Aufbau von Server mit NodeJS 
+- Verbindung mit MongoDB als Dabtabase
+- User verwalten: Register / Login
+- Post verwalten: CRUD Funktion
+- Hashing password: Verbesserte Sicherheit
+- Verwaltung der Authentication - PassportJS Module
+
+### Hyejin Kang
+
+- Erstellen Design system und Prototype (mit Figma)
+- Create Komponent : product-cardlist / main navigation / float button
+- Create Page : main page / after search page / my page
+- Create card model
+- Routing from main page to card list and detail page
+- Set Guard Routing
+- Data binding from main page to card list and detail page mit card CRUD service
+- Feature Search function mit share data service
+- Refactor Header service
+- Überprüfen und Vereinheitlichung der Mediaquery Spec für Mobilgeräte
+
+
+### Minseon Kim
+
+- Workflow von den gesamten Seiten erstellen
+- Card Model erstellen
+- Detailinformationsseite von einem Produktpost erstellen
+- Prüfungsfunktionen, ob die eigegebenen Daten gültig sind
+- Logout Btn und Funktionen implementieren
+
+### Hanbit Jang
+
+Frontend
+
+- Erstellen der Produktregisterseite
+- Vorschau für die Bilddatei
+- Übertragen der Produktinformationen in die Datenbank
+- Verbindung der CRUD funktion für die Anzeigen
+- Routing zur Produktregisterseite
+
+Backend
+
+- Speichern der Bilddatei in lokalen Ordner
+
+<br>
+
+## TODO
+
+- [ ] ~~Logout Component + function + bind backend + alert window(success)~~
+- [ ] ~~Postcard edit / delete function (edit => register page) + data bind + alert window~~
+- [ ] ~~Search result (if without search result)~~
+- [ ] ~~Login/Signup success popup window~~
+- [ ] ~~Testing - error / bug~~

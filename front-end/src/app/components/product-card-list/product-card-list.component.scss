@@ -1,0 +1,149 @@
+$primary-color: #004643;
+$secondary-color: #F9BC60;
+$tertiary-color: #E16162;
+$background-color: #FEF6ED;
+
+.mypage-container {
+  background-color: $background-color;
+  max-width: 1024px;
+  margin: 16px auto;
+}
+#noresult-info {
+  font-size: 1.5rem;
+}
+.product-item {
+  border-radius: 10px;
+}
+.product-image {
+  width: 100%;
+  height: 175px;
+  border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.product-content {
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+}
+span {
+  display: block;
+  height: 100%;
+}
+#product-title {
+  font-size: 1.2rem !important;
+  height: 48px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-height: 1.5rem;
+}
+#product-price {
+  font-size: 1.2rem !important;
+  font-weight: bolder !important;
+  color: #E16162;
+}
+#register-date {
+  margin-top: -8px;
+  text-align: right !important;
+  font-size: 0.75rem !important;
+}
+.btn-active {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 8px;
+  z-index: 3;
+  color: white;
+}
+.btn-active button {
+  width: 45%;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 0.6rem;
+  background-color: #FEF6ED;;
+}
+.btn-active #edit-btn {
+  color: #F9BC60;
+  border: 1px solid #F9BC60;
+}
+.btn-active #delete-btn {
+  color: #E16162;
+  border: 1px solid #E16162;
+}
+
+
+@media (min-width: 768px) {
+  .mypage-container {
+    margin: 30px auto;
+  }  
+  .product-item {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 8px;
+    border-radius: 20px;
+  }
+  .product-item .card-hover {
+    display: flex;
+    flex-direction: column;
+    transition: 0.4s ease-out;
+  }
+  .btn-active {
+    position: absolute;
+    padding: 90px 24px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 3;
+    color: white;
+    opacity: 0;
+  }
+  .btn-active button {
+    margin: 0 8px;
+    padding: 8px 16px;
+    border: 0.5px solid $primary-color;
+    border-radius: 10px;
+    background-color: #fff;
+    transition: 0.4s ease;
+  }
+  .card-hover:hover {
+    background-color: $primary-color;
+    .product-image {
+      opacity: 0.3;
+    }
+    .btn-active {
+      opacity: 1;
+    }
+  }
+  .btn-active #edit-btn:hover {
+    color: #004643;
+    background-color: #F9BC60;
+  }
+  .btn-active #delete-btn:hover {
+    color: #004643;
+    background-color: #E16162;
+  }
+  .product-image {
+    border-radius: 10px;
+    height: 224px;
+  }
+  .product-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 0 0;
+  }
+  #product-title {
+    height: 48px;
+  }
+  #product-price {
+    color: #E16162;
+    margin-top: 4px;
+  }
+}
+

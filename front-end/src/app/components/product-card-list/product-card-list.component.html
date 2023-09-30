@@ -1,0 +1,23 @@
+<div class="container mypage-container">
+  <div class="product-list row g-3">
+    <div class="product-card col-md-3 col-6" *ngFor="let product of products">
+      <div class="product-item" [ngClass]="{'card-hover' : isMypost}" >
+        <a [routerLink]="['/products', product._id]">
+          <img class="product-image" [src]="product.imageUrl[0]" [alt]="product.title" />
+          <div class="product-content">
+            <span id="product-title">{{ product.title }}</span>
+            <span id="product-price">{{ product.price }} €</span>
+            <span id="register-date">{{ product.createdAt | date: 'dd/MM/yy'}}</span>
+          </div>
+        </a>
+        <div class="btn-active" [hidden]="!isMypost">
+          <button class="btn" routerLink="/edit/{{product._id}}" id="edit-btn">edit</button>
+          <button class="btn" (click)="deleteProduct(product._id)" id="delete-btn">delete</button>
+        </div>
+      </div>
+    </div>
+    <div id="noresult-info" *ngIf="products?.length === 0">
+      We couldn't find a match for "{{ searchText }}".
+    </div>
+  </div>
+</div>

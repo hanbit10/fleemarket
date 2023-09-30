@@ -1,0 +1,33 @@
+
+@use '@angular/material' as mat;
+@include mat.core();
+
+$primary-color: #004643;
+$secondary-color: #F9BC60;
+$tertiary-color: #E16162;
+$background-color: #FEF6ED;
+
+*{
+  margin: 0;
+  padding: 0;
+}
+body { 
+  background-color: #FEF6ED;
+  font-family: 'Poppins', sans-serif;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}  
+body::-webkit-scrollbar{
+  display: none;
+  width: 0;  /* Remove scrollbar space */
+  height: 0;
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+ul, ol {
+  list-style: none;
+}
+a, a:hover, a:active, a:link, a:visited {
+  text-decoration: none;
+  color: #1b1c1e;
+}
+

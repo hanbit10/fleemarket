@@ -1,0 +1,137 @@
+@import '../../../styles.scss';
+
+.signup-container {
+  flex-direction: column;
+  display: flex;
+  width: 280px;
+  height: 600px;
+  margin: auto;
+  margin-top: 60px;
+}
+.signup-greeting {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $primary-color;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.form-group label {
+  color: $primary-color;
+  font-size: 1rem;
+  margin-left: 5px;
+}
+.form-group input {
+  width: 280;
+  height: 55px;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  color:$primary-color;
+  padding: 10px;
+}
+.form-group input:focus {
+  outline: none !important;
+  border: solid 1px $secondary-color;
+}
+.id-input, .pw-input {
+  padding-bottom: 20px;
+  border: solid 1px $primary-color;
+ }
+.email-input{
+  border: solid 1px $primary-color;
+}
+ .signup-hint-text {
+   display: grid;
+   justify-content: end;
+   align-content: center;
+   font-size: 0.8rem;
+   color: $primary-color;
+ }
+ .warning-container {
+  width: 500;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .warning-message {
+  color: $secondary-color;
+  font-size: 1.2rem;
+ }
+ .btn-container {
+  margin-top: 20px;
+ }
+.signup-btn {
+  width: 280px;
+  height: 50px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+}
+.signup-text {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.7rem;
+  color: $primary-color;
+}
+.signup-btn {
+  width: 280px;
+  height: 50px;
+  background-color: $tertiary-color;
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  margin-top: 10px;
+  border: none;
+}
+.invalid-msg {
+  margin-left: 5px;
+  color: hsl(356, 100%, 38%);
+}
+#m-form-margin {
+  margin-top: 16px;
+}
+
+@media (min-width: 768px) {
+  .signup-container {
+    width: 500px;
+  }
+  .signup-greeting {
+    font-size: 1.7rem;
+  }
+  .form-group {
+    margin-top: 30px;
+  }
+  .form-group label {
+    margin-left: 5px;
+  }
+  .username-label{
+    margin-top: 20px;
+  }
+  .form-group input {
+    width: 500px;
+    height: 50px;
+  }
+  .id-input, .pw-input {
+    margin-bottom: 20px;
+   }
+  .pw-re-input {
+    margin-bottom: 5px;
+  }
+  .signup-hint-text {
+    font-size: 0.8rem;
+  }
+   .btn-container {
+    margin-top: 10px;
+   }
+  .signup-btn {
+    width: 500px;
+  }
+}

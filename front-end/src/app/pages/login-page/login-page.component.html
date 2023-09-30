@@ -1,0 +1,48 @@
+<app-header></app-header>
+<div class="login-container">
+  <div class="login-greeting">Welcome back!</div>
+  <div class="form-group">
+    <label>ID</label>
+    <input 
+      [(ngModel)]="loginUserData['email']" 
+      type="text" 
+      class="id-input"
+      placeholder="Enter your email"
+      >
+    <label>PASSWORD</label>
+    <input 
+      [(ngModel)]="loginUserData['password']" 
+      type="password" 
+      class="pw-input"
+      required
+      minlength="8"
+      maxlength="20"
+      >
+  </div>
+  <span class="error-container">
+    <div *ngIf="isDataInvalid" class="login-error-text">
+      Please enter the correct ID or Password.
+    </div>
+  </span>
+
+  <div class="btn-container">
+    <div class="login-btn-container">
+      <button type="submit" class="login-btn" (click)="loginUser()">
+        LOG IN
+      </button>
+    </div>
+
+    <div class="signup-btn-container">
+
+      <div class="signup-text">
+        Don't you have an account?
+      </div>
+
+      <button [routerLink]="signupBtnLink" class="signup-btn">
+        SIGN UP
+      </button>
+    </div>
+    
+  </div>
+
+

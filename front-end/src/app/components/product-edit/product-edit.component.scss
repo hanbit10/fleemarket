@@ -1,0 +1,416 @@
+$primary-color: #004643;
+$secondary-color: #f9bc60;
+$tertiary-color: #e16162;
+$background-color: #fef6ed;
+$white: #ffffff;
+$black: #000000;
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.container {
+  max-width: 1024px;
+  background-color: $background-color;
+}
+
+.layout {
+  width: 90%;
+  margin: auto;
+}
+
+.layout-iwant {
+  display: flex;
+  justify-content: space-between;
+}
+
+.layout-radio-button {
+  display: flex;
+  justify-content: flex-start;
+  width: 73%;
+  margin-top: 30px;
+}
+
+.layout-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.box-image {
+  position: relative;
+  min-width: 215px;
+  width: 100%;
+  height: 107px;
+  border: solid 1px $black;
+  border-radius: 5px;
+  background-color: $white;
+}
+
+.button-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 196px;
+  height: 34px;
+  font-size: 1rem;
+}
+
+.button-position {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+input[name="sellbuy"] {
+  margin-top: 10px;
+  accent-color: $black;
+}
+
+.row-button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 45%;
+  height: 40px;
+  border-radius: 40px;
+  font-size: 1.3rem;
+  font-style: normal;
+  border: none;
+}
+
+.button-register {
+  display: none;
+}
+
+.button-cancel {
+  display: none;
+}
+
+.file-image {
+  display: none;
+}
+
+.form-field {
+  width: 215px;
+  width: 73%;
+  height: 35px;
+  padding-left: 10px;
+  border-radius: 5px;
+  background-color: $white;
+  border: 1px solid $black;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+}
+
+.form-field-two {
+  min-width: 215px;
+  width: 100%;
+  height: 107px;
+}
+
+.form-field-arrow {
+  background: url(https://img.icons8.com/android/24/null/sort-down.png)
+    no-repeat scroll 97% 4px;
+  background-color: $white;
+}
+
+.form-field-euro {
+  background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
+    no-repeat scroll 97% 4px;
+  background-color: $white;
+}
+
+.text {
+  display: inline-block;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  margin-right: 25px;
+  width: 20%;
+  height: 40px;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.text-type {
+  margin-top: 10px;
+}
+
+.text-type-two {
+  margin-bottom: 5px;
+  margin-top: 5px;
+  height: 20px;
+}
+
+.text-image {
+  margin-bottom: 5px;
+  margin-top: 20px;
+  height: 20px;
+}
+
+.text-button-radio {
+  font-size: 1rem;
+  margin-right: 7%;
+}
+
+.image-data {
+  width: 105px;
+  height: 105px;
+}
+
+.count {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  top: 1%;
+  left: 1%;
+  font-size: 1rem;
+  color: $white;
+  background: rgba(0, 0, 0, 0.5);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+#btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 32px;
+}
+#register-btn, #cancel-btn {
+  width: 150px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+}
+#register-btn {
+  background-color: $secondary-color;
+  color: $primary-color;
+  border: none;
+  margin-right: 8px;
+}
+#cancel-btn {
+  background-color: $background-color;
+  border: 1px solid $primary-color;
+  margin-left: 8px;
+}
+
+.warning-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ .warning-message {
+  color: $secondary-color;
+  font-size: 1.2rem;
+ }
+
+
+@media (min-width: 768px) {
+
+  #btn-container {
+    display: none;
+  }
+  #register-btn, #cancel-btn {
+    display: none;
+  }
+  #register-btn {
+    display: none;
+  }
+  #cancel-btn {
+    display: none;
+  }
+  .layout-iwant {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .layout-radio-button {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin-top: 30px;
+  }
+
+  .layout-input {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .row > * {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .row-button {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  title {
+    width: 100%;
+    height: 70px;
+    margin-inline: auto;
+    margin-top: 34px;
+    display: flex;
+    align-items: flex-end;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 500;
+    margin-top: 30px;
+    font-size: 3rem;
+  }
+
+  .text {
+    font-size: 1.2rem;
+    margin-bottom: 0px;
+    margin-right: 0px;
+    width: 10%;
+  }
+
+  .text-button-radio {
+    font-size: 1.2rem;
+  }
+
+  .text-type {
+    font-size: 1.2rem;
+    height: 30px;
+  }
+
+  .text-type-two {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    height: 30px;
+  }
+
+  .text-image {
+    display: none;
+  }
+
+  .form-field {
+    font-size: 1.2rem;
+  }
+
+  .form-field {
+    width: 100%;
+    height: 55px;
+    font-size: 1.2rem;
+    padding-left: 15px;
+    margin-bottom: 10px;
+    border: 1px solid $primary-color;
+    background: $background-color;
+    background-color: $background-color;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
+  }
+
+  .form-field-arrow {
+    background: url(https://img.icons8.com/android/24/null/sort-down.png)
+      no-repeat scroll 97% 16px;
+  }
+
+  .form-field-euro {
+    background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
+      no-repeat scroll 97% 16px;
+  }
+
+  .form-field-two {
+    padding-top: 15px;
+    margin-top: 5px;
+    width: 100%;
+    height: 230px;
+  }
+
+  .box-image {
+    position: relative;
+    width: 100%;
+    height: 372px;
+    margin-top: 40px;
+    background-color: #e7e7e7;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    width: 47%;
+    height: 50px;
+    border-radius: 40px;
+    font-size: 1.5rem;
+    font-style: normal;
+    border: none;
+  }
+
+  .button-image {
+    width: 40%;
+    height: auto;
+    font-size: 1.2rem;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .button-cancel {
+    background: $background-color;
+    color: $primary-color;
+    border: 1px solid $primary-color;
+  }
+
+  .button-register {
+    background: $primary-color;
+    color: $background-color;
+  }
+
+  .image-data {
+    position: relative;
+    width: 100%;
+    height: 369px;
+    border-radius: 5px;
+  }
+
+  .count {
+    width: 50px;
+    height: 50px;
+    top: 9%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+  }
+
+  .warning-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   }
+   .warning-message {
+    padding-top: 10px;
+    color: $secondary-color;
+    font-size: 1.5rem;
+   }
+}

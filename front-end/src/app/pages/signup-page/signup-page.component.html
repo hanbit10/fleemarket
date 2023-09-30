@@ -1,0 +1,65 @@
+<app-header></app-header>
+<div class="signup-container">
+  <div class="signup-greeting">
+    Create an Account
+  </div>
+  <div class="form-group">
+    <label>ID</label>
+    <input 
+      [(ngModel)]="signupUserData['email']" 
+      type="email" 
+      placeholder="Enter your email" 
+      class="email-input" 
+      required
+      [pattern]="emailPattern"
+      #email="ngModel"
+      [ngClass]="{ 'is-invalid': email.errors }"
+    >
+    <div class="invalid-msg" *ngIf="email.errors">
+      <div *ngIf="email.errors['pattern']">
+        ID must be an email
+      </div>
+    </div>
+
+    <label class="username-label" id="m-form-margin">USERNAME</label>
+    <input 
+      [(ngModel)]="signupUserData['username']" 
+      type="text" 
+      placeholder="" 
+      class="id-input" 
+      required
+      >
+    <label id="m-form-margin">PASSWORD</label>
+    <input 
+      [(ngModel)]="signupUserData['password']" 
+      type="password" 
+      placeholder="" 
+      class="pw-input" 
+      required
+      minlength="8"
+      maxlength="20"
+      #password="ngModel"
+      [ngClass]="{ 'is-invalid': password.errors }"
+    >
+    <label id="m-form-margin">CONFIRM PASSWORD</label>
+    <input 
+      [(ngModel)]="confirmPassword" 
+      type="password" 
+      placeholder="" 
+      class="pw-re-input" 
+      required
+      minlength="8"
+      maxlength="20"
+      #password="ngModel"
+      [ngClass]="{ 'is-invalid': password.errors }"
+      >
+    <div class="signup-hint-text">
+      HINT: 8-20 Characters
+    </div>
+    <div class="warning-container">
+      <div *ngIf="isDataIncorrect" class="warning-message">{{ warningMsg }}</div>
+    </div>
+    <div class="btn-container">
+      <button type="submit" class="signup-btn" (click)="signupUser()">SIGN UP</button>
+    </div>
+  </div>

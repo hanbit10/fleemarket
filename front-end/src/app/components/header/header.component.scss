@@ -1,0 +1,125 @@
+@import '../../../styles.scss'; 
+
+.container-fluid {
+  background-color: $primary-color;
+  z-index: 1;
+}
+.header-container {
+  margin: 0 20px;
+  height: 72px;
+  background-color: $primary-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fixed {
+  position: fixed;
+  width: 100%;
+  transition: 0.5s linear;
+  top: 0px;
+}
+.nofixed {
+  position: static;
+  transition: 0.3s linear;
+  top: -50px;
+}
+.left-icon-container {
+  display: flex;
+  justify-content: left;
+  padding: 0px;
+}
+.left-icon-container img {
+  height: 32px;
+}
+.right-icon-container {
+  display: flex;
+  justify-content: right;
+  padding: 0;
+}
+#mobile-icon img{
+  height: 32px;
+}
+.center-text {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  color: $secondary-color;
+}
+
+.dropdown-content-mobile {
+  right: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index : 1;
+}
+
+.dropdown-content-mobile a {
+  background-color: $secondary-color;
+  padding: 12px;
+  color: $primary-color;
+  text-decoration: none;
+}
+
+// Web-mode 
+@media (min-width: 768px){
+  .header-wrapper{
+    margin: 0 auto; 
+    max-width: 1180px;
+  }
+  .header-container {
+    height: 80px;
+    justify-content: center;
+    align-items: center;
+  }
+  .left-icon-container img {
+    height: 40px;
+  }
+  .right-icon1-web {
+    margin-right: 10px;
+  }
+  .right-icon1-web img, .right-icon2-web img  {
+    height: 38px;
+  }
+  .right-icon1-web img:hover , .right-icon2-web img:hover {
+    opacity: 0.7;
+  }
+  .header-search-bar {
+    padding: 0 50px;
+  }
+  .search-bar {
+    height: 45px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    padding: 0 18px;
+  }
+  input::placeholder {
+    font-size: 1.3rem;
+    opacity: .5;
+  }
+  .dropdown-container{
+    max-width: 1180px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .dropdown-content-web {
+    top: 80px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index : 1;
+  }
+  .dropdown-content-web a {
+    background-color: $secondary-color;
+    width: 120px;
+    padding: 12px;
+    color: $primary-color;
+    text-align: center;
+  }
+  .dropdown-content-web a:hover {
+    background-color: $tertiary-color;
+    color: $background-color;
+  }
+}

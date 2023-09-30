@@ -1,0 +1,122 @@
+@import '../../../styles.scss';
+
+.login-container {
+  flex-direction: column;
+  display: flex;
+  width: 280px;
+  height: 600px;
+  margin: auto;
+  margin-top: 60px;
+}
+.login-greeting {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $primary-color;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+.form-group label {
+  color: $primary-color;
+  font-size: 1rem;
+}
+.form-group input {
+  width: 280;
+  height: 55px;
+  border-radius: 5px;
+  color:#004643;
+  background-color: #fff;
+  padding: 10px
+}
+.form-group input:focus {
+  outline: none !important;
+  border: solid 1px $secondary-color;
+}
+.id-input, .pw-input{
+  margin-bottom: 20px;
+  border: solid 1px $primary-color;
+ }
+ .error-container {
+  height: 32px;
+ }
+ .login-error-text {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.8rem;
+  color: $tertiary-color;
+ }
+ .btn-container {
+  margin-top: 10px;
+ }
+ .login-btn-container {
+  height: 60px;
+ }
+.login-btn {
+  width: 280px;
+  height: 50px;
+  background-color: $secondary-color;
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: none;
+}
+.signup-btn-container {
+  margin-top: 40px;
+  border-top: 0.5px solid #a4b0be;
+  padding-top: 32px;
+}
+.signup-text {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  font-size: 0.7rem;
+  color: $primary-color;
+}
+.signup-btn {
+  width: 280px;
+  height: 50px;
+  background-color: $background-color;
+  color:$primary-color;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 25px;
+  border: solid 1px $primary-color;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .login-container {
+    width: 500px;
+    height: 600px;
+  }
+  .login-greeting {
+    font-size: 1.7rem;
+  }
+  .form-group {
+    margin-top: 30px;
+  }
+  .form-group input {
+    width: 500px;
+    height: 50px;
+  }
+  .id-input, .pw-input{
+    margin-bottom: 20px;
+   }
+  .login-error-text {
+    font-size: 1rem;
+  }
+   .btn-container {
+    margin-top: 10px;
+   }
+  .login-btn {
+    width: 500px;
+  }
+  .signup-btn {
+    width: 500px;
+  }
+}
+

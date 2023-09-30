@@ -1,0 +1,18 @@
+@import "../../../styles.scss";
+
+.section {
+  max-width: 1024px;
+  margin: 16px auto 0;
+}
+#search-result {
+  padding-left: 12px;
+  font-size: 1rem;
+}
+@media (min-width: 768px) {
+  .section {
+    margin: 32px auto 0;
+  }
+  #search-result {
+    font-size: 1.5rem;
+  }
+}
