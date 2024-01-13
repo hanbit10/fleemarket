@@ -8,8 +8,9 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
-import userRoutes from "./api/routes/user.mjs";
-import productCardRoutes from "./api/routes/productCard.mjs";
+import userRoutes from "./server/api/routes/user.mjs";
+import productCardRoutes from "./server/api/routes/productCard.mjs";
+import path from "path";
 
 const app = express();
 
@@ -18,7 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport config
-import passportconfig from "./config/passport.mjs";
+import passportconfig from "./server/config/passport.mjs";
+import { fileURLToPath } from "url";
 passportconfig(passport);
 
 // Set Express Session
@@ -71,21 +73,21 @@ app.post("/logout", (req, res, next) => {
 app.use("/user", userRoutes);
 app.use("/card", productCardRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Home");
-});
+// app.get("/", (req, res) => {
+//   res.send("Home");
+// });
 
 // If login fail, redirected to this url (loggedIn: false)
 app.get("/loginFail", (req, res) => {
   res.json({ loggedIn: false });
 });
 
-// Error handling
-app.use((req, res, next) => {
-  const error = new Error("Not found");
-  error.status = 404;
-  next(error);
-});
+// // Error handling
+// app.use((req, res, next) => {
+//   const error = new Error("Not found");
+//   error.status = 404;
+//   next(error);
+// });
 
 app.use((error, req, res, next) => {
   res.status(error.status || 500);
@@ -96,4 +98,15 @@ app.use((error, req, res, next) => {
   });
 });
 
+app.use(express.static("public"));
+
+app.get("*", (req, res) => {
+  const currentModuleURL = import.meta.url;
+
+  // Use the new URL() constructor to extract the directory path
+  const currentDirectory = path.dirname(
+    fileURLToPath(new URL(currentModuleURL))
+  );
+  res.sendFile(path.join(currentDirectory, "public", "index.html"));
+});
 export default app;
