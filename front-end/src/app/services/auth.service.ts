@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BASE_URL } from '../constants/urls';
 
 interface loginResponse {
-  validUser: boolean
+  validUser: boolean;
 }
 
-const _signupUrl = "http://localhost:3000";
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private isLoggedIn$: boolean;
@@ -17,23 +16,29 @@ export class AuthService {
     this.isLoggedIn$ = data;
   }
   public getLoggedIn(): boolean {
-    return this.isLoggedIn$ || sessionStorage.getItem('loginStatus') == 'loggedIn';
+    return (
+      this.isLoggedIn$ || sessionStorage.getItem('loginStatus') == 'loggedIn'
+    );
   }
   private userInfo = {
-    id: "",
-    email: "",
-    username: ""
-  }
+    id: '',
+    email: '',
+    username: '',
+  };
 
   private userCard = {
     userId: this.userInfo.id,
     email: this.userInfo.email,
-  }
+  };
 
-  private setUserInfo(userInfo: { _id: string; email: string; username: string }) {
-    this.userInfo["id"] = userInfo._id;
-    this.userInfo["email"] = userInfo.email;
-    this.userInfo["username"] = userInfo.username;
+  private setUserInfo(userInfo: {
+    _id: string;
+    email: string;
+    username: string;
+  }) {
+    this.userInfo['id'] = userInfo._id;
+    this.userInfo['email'] = userInfo.email;
+    this.userInfo['username'] = userInfo.username;
   }
   // todo : getUsername -> gerUserId
   // public getUserId() {
@@ -58,24 +63,27 @@ export class AuthService {
     return this.userCard;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   signupUser(email: string, username: string, password: string) {
-    return this.http.post<any>(`${_signupUrl}/user/register`, {
+    return this.http.post<any>(`${BASE_URL}/user/register`, {
       email,
       username,
-      password
+      password,
     });
   }
 
   // http post login
   // return Observerble
   loginUser(email: string, password: string) {
-    return this.http.post<any>(`${_signupUrl}/login`, { email, password });
+    return this.http.post<any>(`${BASE_URL}/login`, { email, password });
   }
 
   // If login success, update login status information: LoggedIn, UserInfo
-  loginUpdate(loggedin: boolean, user: { _id: string; email: string; username: string }) {
+  loginUpdate(
+    loggedin: boolean,
+    user: { _id: string; email: string; username: string }
+  ) {
     this.setLoggedIn(loggedin);
     this.setUserInfo(user);
     if (loggedin) {
@@ -87,6 +95,6 @@ export class AuthService {
   logoutUser() {
     sessionStorage.removeItem('loginStatus');
     sessionStorage.removeItem('userId');
-    return this.http.post<any>(`${_signupUrl}/logout`, null);
+    return this.http.post<any>(`${BASE_URL}/logout`, null);
   }
 }
