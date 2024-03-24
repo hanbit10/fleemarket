@@ -1,24 +1,31 @@
 # Gruppe11
+
+# Link of the Website
+
+https://everycent.onrender.com
+
 <br>
 
 ![Semantic description of image](Design_System.jpg)
 
-
 # EveryCent
+
 - WebApp für Online Flohmarkt
 
 ## Technologies
+
 - Frontend: **Angular**
-- Backend:  **Node JS**
+- Backend: **Node JS**
 - Database: **MongoDB**
 
-## Design 
+## Design
 
 ### [Link for Mockup Design ](https://www.figma.com/file/pVUlarB3jvQJ339Hzii7xP/everycent?node-id=79%3A2&t=uLUPgowncZaLY1o9-1)
 
-
 ## Funktionen
+
 ### User Verwaltung
+
 - Register
 - Login
 - Meine Beiträge verwalten
@@ -28,6 +35,7 @@
 <br>
 
 ### Post Verwaltung
+
 - Create
 - Read
 - Update
@@ -35,29 +43,29 @@
 
 ![Semantic description of image](Crud.gif)
 
-
 <br>
 
 ### Responsive Design
+
 - Web version
 - Mobile version
 
 ![Semantic description of image](Responsive.gif)
 
-
 <br>
 
-## Was jeder hat bisher gemacht 
+## Was jeder hat bisher gemacht
+
 ### Hyun Kim
 
 Frontend
 
 - Erstellen UI : Login Page / Signup Page / Header Component
-- Verbindungseinstellungen für den Anschluss des Client- und Server-Seite 
+- Verbindungseinstellungen für den Anschluss des Client- und Server-Seite
 
 Backend
 
-- Aufbau von Server mit NodeJS 
+- Aufbau von Server mit NodeJS
 - Verbindung mit MongoDB als Dabtabase
 - User verwalten: Register / Login
 - Post verwalten: CRUD Funktion
@@ -76,7 +84,6 @@ Backend
 - Feature Search function mit share data service
 - Refactor Header service
 - Überprüfen und Vereinheitlichung der Mediaquery Spec für Mobilgeräte
-
 
 ### Minseon Kim
 

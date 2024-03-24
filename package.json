@@ -1,4 +1,11 @@
 {
+  "name": "everycent",
+  "version": "1.0.1",
+  "scripts": {
+    "start": "cd backend && node server.mjs",
+    "prebuild": "cd backend && npm run build",
+    "build": "cd front-end && npm run build"
+  },
   "dependencies": {
     "mongoose": "^7.5.3"
   }
