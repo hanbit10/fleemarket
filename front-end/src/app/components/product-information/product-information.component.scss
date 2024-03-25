@@ -5,6 +5,11 @@ $background-color: #fef6ed;
 $white: #ffffff;
 $black: #000000;
 
+.title-section {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -18,7 +23,33 @@ input[type="number"] {
 
 .container {
   max-width: 1024px;
+  height: 100vh;
   background-color: $background-color;
+}
+
+span {
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+.radio-btn-section {
+  display: flex;
+  align-items: center;
+}
+
+.radio-btn-text {
+  margin-right: 30px;
+}
+
+.radio-btn-layout {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 360px;
+}
+
+.radio-btn {
+  font-size: 1rem;
+  margin-right: 7%;
 }
 
 .layout {
@@ -26,49 +57,108 @@ input[type="number"] {
   margin: auto;
 }
 
-.layout-iwant {
+.input-section {
+  width: 50%;
+  padding-right: 0;
   display: flex;
+  flex-direction: column;
+}
+
+.input-layout {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
 }
 
-.layout-radio-button {
-  display: flex;
-  justify-content: flex-start;
-  width: 73%;
-  margin-top: 30px;
-}
-
-.layout-input {
-  display: flex;
-  justify-content: space-between;
-}
-
-.box-image {
-  position: relative;
-  min-width: 215px;
+.form-field {
+  max-width: 528px;
   width: 100%;
-  height: 107px;
+  height: 50px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid $primary-color;
+  background: $background-color;
+  background-color: $background-color;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+}
+
+.form-field-arrow {
+  background: url(https://img.icons8.com/android/24/null/sort-down.png)
+    no-repeat scroll 97% 4px;
+}
+
+.form-field-euro {
+  background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
+    no-repeat scroll 97% 4px;
+}
+
+textarea {
+  width: 100%;
+  height: 50px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid $primary-color;
+  background: $background-color;
+  background-color: $background-color;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+}
+
+.image-section {
+  width: 50%;
+}
+
+.image-box {
+  max-width: 528px;
+  margin-top: 38px;
+  width: 100%;
+  height: 320px;
   border: solid 1px $black;
   border-radius: 5px;
-  background-color: $white;
-}
-
-.button-image {
+  background-color: rgb(240, 240, 240);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 196px;
-  height: 34px;
-  font-size: 1rem;
 }
 
-.button-position {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
+.image-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 190px;
+  background-color: rgb(173, 173, 173);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.image-text {
+  display: none;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.description-section {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-text {
+  display: none;
+}
+
+textarea {
+  padding-top: 15px;
+  margin-top: 5px;
+  width: 100%;
+  height: 230px;
 }
 
 input[name="sellbuy"] {
@@ -76,98 +166,40 @@ input[name="sellbuy"] {
   accent-color: $black;
 }
 
-.row-button {
+.register-section {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: 32px;
 }
 
-.button {
+button {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 45%;
-  height: 40px;
+  width: 100%;
+  height: 72px;
   border-radius: 40px;
   font-size: 1.3rem;
   font-style: normal;
   border: none;
 }
 
-.button-cancel {
-  display: none;
+.register-btn {
+  background: $primary-color;
+  color: $background-color;
+  margin-right: 10px;
 }
 
-.button-register {
-  display: none;
+.cancel-btn {
+  background: $background-color;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  margin-left: 10px;
 }
+
 .file-image {
   display: none;
-}
-
-.form-field {
-  width: 215px;
-  width: 73%;
-  height: 35px;
-  padding-left: 10px;
-  border-radius: 5px;
-  background-color: $white;
-  border: 1px solid $black;
-  -moz-appearance: none; /* Firefox */
-  -webkit-appearance: none; /* Safari and Chrome */
-  appearance: none;
-}
-
-.form-field-two {
-  min-width: 215px;
-  width: 100%;
-  height: 107px;
-  padding: 16px
-}
-
-.form-field-arrow {
-  background: url(https://img.icons8.com/android/24/null/sort-down.png)
-    no-repeat scroll 97% 4px;
-  background-color: $white;
-}
-
-.form-field-euro {
-  background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
-    no-repeat scroll 97% 4px;
-  background-color: $white;
-}
-
-.text {
-  display: inline-block;
-  margin-top: 36px;
-  margin-bottom: 10px;
-  margin-right: 25px;
-  width: 20%;
-  height: 40px;
-  font-weight: 400;
-  font-size: 1rem;
-}
-
-.text-type {
-  margin-top: 10px;
-}
-
-.text-type-two {
-  margin-bottom: 5px;
-  margin-top: 5px;
-  height: 20px;
-}
-
-.text-image {
-  margin-bottom: 5px;
-  margin-top: 20px;
-  height: 20px;
-}
-
-.text-button-radio {
-  font-size: 1rem;
-  margin-right: 7%;
 }
 
 .image-data {
@@ -176,7 +208,6 @@ input[name="sellbuy"] {
 }
 
 .count {
-  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -196,7 +227,8 @@ input[name="sellbuy"] {
   justify-content: center;
   margin-top: 32px;
 }
-#register-btn, #cancel-btn {
+#register-btn,
+#cancel-btn {
   width: 150px;
   height: 50px;
   font-size: 1rem;
@@ -219,13 +251,13 @@ input[name="sellbuy"] {
   display: flex;
   justify-content: center;
   align-items: center;
- }
- .warning-message {
+}
+.warning-message {
   color: $secondary-color;
   font-size: 1.2rem;
- }
+}
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   .layout-iwant {
     display: flex;
     justify-content: flex-start;
@@ -254,27 +286,6 @@ input[name="sellbuy"] {
     justify-content: space-around;
   }
 
-  title {
-    width: 100%;
-    height: 70px;
-    margin-inline: auto;
-    margin-top: 34px;
-    display: flex;
-    align-items: flex-end;
-    font-family: "Poppins";
-    font-style: normal;
-    font-weight: 500;
-    margin-top: 30px;
-    font-size: 3rem;
-  }
-
-  .text {
-    font-size: 1.2rem;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    width: 10%;
-  }
-
   .text-button-radio {
     font-size: 1.2rem;
   }
@@ -290,15 +301,12 @@ input[name="sellbuy"] {
     height: 30px;
   }
 
-  .text-image {
-    display: none;
-  }
-
   .form-field {
     font-size: 1.2rem;
   }
 
-  .form-field {
+  .form-field,
+  textarea {
     width: 100%;
     height: 55px;
     font-size: 1.2rem;
@@ -320,13 +328,6 @@ input[name="sellbuy"] {
   .form-field-euro {
     background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
       no-repeat scroll 97% 16px;
-  }
-
-  .form-field-two {
-    padding-top: 15px;
-    margin-top: 5px;
-    width: 100%;
-    height: 230px;
   }
 
   .box-image {
@@ -351,8 +352,7 @@ input[name="sellbuy"] {
     border: none;
   }
 
-  .button-image {
-    width: 40%;
+  .image-button {
     height: auto;
     font-size: 1.2rem;
     background-color: #d9d9d9;
@@ -393,10 +393,10 @@ input[name="sellbuy"] {
     display: flex;
     justify-content: center;
     align-items: center;
-   }
-   .warning-message {
+  }
+  .warning-message {
     padding-top: 10px;
     color: $secondary-color;
     font-size: 1.5rem;
-   }
+  }
 }

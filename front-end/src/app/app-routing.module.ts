@@ -14,39 +14,44 @@ import { AppComponent } from './app.component';
 import { ProductEditComponent } from './components/product-edit/product-edit.component';
 
 const routes: Routes = [
-  { path: '', component: MainPageComponent,
+  {
+    path: '',
+    component: MainPageComponent,
     children: [
       { path: '', component: ProductCardListComponent },
       { path: 'products', component: ProductCardListComponent },
-    ]
+    ],
   },
-  { path: 'welcome', component: AfterLoginComponent, },
-  { path: 'search', component: AfterSearchComponent, },
+  { path: 'welcome', component: AfterLoginComponent },
+  { path: 'search', component: AfterSearchComponent },
   {
-    path: 'products/:productId', component: ProductDetailPageComponent,
+    path: 'products/:productId',
+    component: ProductDetailPageComponent,
     data: {
       path: 'products/:productId',
     },
     canActivate: [DetailOpenGuard],
   },
   {
-    path: 'login', component: LoginPageComponent,
+    path: 'login',
+    component: LoginPageComponent,
     data: {
       path: 'login',
     },
   },
   {
-    path: 'signup', component: SignupPageComponent,
+    path: 'signup',
+    component: SignupPageComponent,
     data: {
       path: 'signup',
     },
   },
   {
-    path: 'post', component: ProductRegisterPageComponent,
+    path: 'post',
+    component: ProductRegisterPageComponent,
     data: {
       path: 'post',
     },
-    canActivate: [DetailOpenGuard],
   },
   {
     path: 'mypage',
@@ -56,11 +61,11 @@ const routes: Routes = [
     },
     canActivate: [DetailOpenGuard],
   },
-  { path: 'edit/:productId', component: ProductEditComponent, }
+  { path: 'edit/:productId', component: ProductEditComponent },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
-export const routingComponents = [ MainPageComponent ];
+export const routingComponents = [MainPageComponent];

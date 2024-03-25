@@ -1,82 +1,110 @@
 <div class="container">
-  <div class="layout">
-    <title>Upload New Item</title>
-    <div class="layout-iwant">
-      <h1 class="text">I want</h1>
-      <div class="layout-radio-button">
-        <label class="text-button-radio" *ngFor="let trade of tradeOptionRadioButton" for="myRadioId">
-          <input type="radio" id="myRadioId" name="sellbuy" [(ngModel)]="products.dealType" [value]="trade">
-          {{trade}}
-        </label>
-      </div>
-    </div>
+  <section class="title-section">
+    <h2>Upload New Item</h2>
+  </section>
 
-    <div class="row">
-      <div>
-        <div class="layout-input">
-          <h1 class="text text-type">Title</h1>
-          <input class="form-field" [(ngModel)]="products.title" name="title" type="text">
-        </div>
-        <div class="layout-input">
-          <h1 class="text text-type">Category</h1>
-          <select [(ngModel)]="products.category" class="form-field form-field-arrow" name="category">
-            <option hidden></option>
-            <option *ngFor="let y of categoryType" [ngValue]="y">{{y}}</option>
-          </select>
-        </div>
-        <div class="layout-input">
-          <h1 class="text text-type">Price</h1>
-          <input class="form-field form-field-euro" [(ngModel)]="products.price" name="price" type="number">
-        </div>
-        <div class="layout-input">
-          <h1 class="text text-type">District</h1>
-          <select [(ngModel)]="products.district" class="form-field form-field-arrow" name="district">
-            <option hidden></option>
-            <option *ngFor="let z of districtType" [ngValue]="z">{{z}}</option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <div *ngIf="screenMode == 'web'">
-          <h1 class="text text-image">Image</h1>
-          <div class="box-image">
-            <div *ngFor="let preview of previews">
-              <img class="image-data " [src]="preview" />
-            </div>
-            <div class="count" *ngIf="counts">+{{numberOfFiles - 1}}</div>
-            <div>
-              <label class="button-position button-image" for="image">Add Image</label>
-            </div>
-          </div>
-          <input class="file-image" id="image" multiple (change)="onFileSelect($event)" type="file" />
-        </div>
-      </div>
+  <section class="radio-btn-section">
+    <span class="radio-btn-text">I want</span>
+    <div class="radio-btn-layout">
+      <label
+        class="radio-btn"
+        *ngFor="let trade of tradeOptionRadioButton"
+        for="myRadioId"
+      >
+        <input
+          type="radio"
+          id="myRadioId"
+          name="sellbuy"
+          [(ngModel)]="products.dealType"
+          [value]="trade"
+        />
+        {{ trade }}
+      </label>
     </div>
-    <h1 class="text text-type-two">Description</h1>
-    <textarea class="form-field form-field-two" [(ngModel)]="products.description" name="description"></textarea>
-    <div *ngIf="screenMode == 'mobile'">
-      <h1 class="text text-image">Image</h1>
-      <div class="box-image">
+  </section>
+
+  <section class="row">
+    <section class="input-section">
+      <div class="input-layout">
+        <span>Title</span>
+        <input
+          class="form-field"
+          [(ngModel)]="products.title"
+          name="title"
+          type="text"
+        />
+      </div>
+      <div class="input-layout">
+        <span>Category</span>
+        <select
+          [(ngModel)]="products.category"
+          class="form-field form-field-arrow"
+          name="category"
+        >
+          <option hidden></option>
+          <option *ngFor="let y of categoryType" [ngValue]="y">
+            {{ y }}
+          </option>
+        </select>
+      </div>
+      <div class="input-layout">
+        <span>Price</span>
+        <input
+          class="form-field form-field-euro"
+          [(ngModel)]="products.price"
+          name="price"
+          type="number"
+        />
+      </div>
+      <div class="input-layout">
+        <span>District</span>
+        <select
+          [(ngModel)]="products.district"
+          class="form-field form-field-arrow"
+          name="district"
+        >
+          <option hidden></option>
+          <option *ngFor="let z of districtType" [ngValue]="z">
+            {{ z }}
+          </option>
+        </select>
+      </div>
+    </section>
+
+    <section class="image-section">
+      <label class="image-text">Image</label>
+      <div class="image-box">
         <div *ngFor="let preview of previews">
           <img class="image-data" [src]="preview" />
         </div>
-        <div class="count" *ngIf="counts">+{{numberOfFiles - 1}}</div>
-        <div>
-          <label class="button-position button-image" for="image">Add Image</label>
-        </div>
+        <div class="count" *ngIf="counts">+{{ numberOfFiles - 1 }}</div>
+
+        <label class="image-label" for="image">Add Image</label>
       </div>
-      <input class="file-image" id="image" multiple (change)="onFileSelect($event)" type="file" />
-      <div id="btn-container">
-        <button id="register-btn" (click)="saveProduct()">REGISTER</button>
-        <button id="cancel-btn" routerLink="/" (click)="cancelAlert()">CANCEL</button>
-      </div>
-    </div>
-    <div class="row-button" [align]="'end'">
-      <button class="button button-register" (click)="saveProduct()">REGISTER</button>
-      <button mat-dialog-close class="button button-cancel" (click)="cancelAlert()">CANCEL</button>
-    </div>
-    <div class="warning-container">
-      <div *ngIf="isDataIncorrect" class="warning-message">{{ warningMsg }}</div>
+      <input
+        class="file-image"
+        id="image"
+        multiple
+        (change)="onFileSelect($event)"
+        type="file"
+      />
+    </section>
+  </section>
+
+  <section class="description-section">
+    <label class="description-text">Description</label>
+    <textarea [(ngModel)]="products.description" name="description"></textarea>
+  </section>
+
+  <section class="register-section">
+    <button class="register-btn" (click)="saveProduct()">REGISTER</button>
+    <button mat-dialog-close class="cancel-btn" (click)="cancelAlert()">
+      CANCEL
+    </button>
+  </section>
+  <div class="warning-container">
+    <div *ngIf="isDataIncorrect" class="warning-message">
+      {{ warningMsg }}
     </div>
   </div>
 </div>
