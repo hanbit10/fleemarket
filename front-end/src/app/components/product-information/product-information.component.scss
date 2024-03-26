@@ -37,6 +37,7 @@ span {
 }
 
 .radio-btn-text {
+  width: 80px;
   margin-right: 30px;
 }
 
@@ -50,11 +51,6 @@ span {
 .radio-btn {
   font-size: 1rem;
   margin-right: 7%;
-}
-
-.layout {
-  width: 90%;
-  margin: auto;
 }
 
 .input-section {
@@ -71,7 +67,6 @@ span {
 }
 
 .form-field {
-  max-width: 528px;
   width: 100%;
   height: 50px;
   padding: 8px;
@@ -86,18 +81,19 @@ span {
 
 .form-field-arrow {
   background: url(https://img.icons8.com/android/24/null/sort-down.png)
-    no-repeat scroll 97% 4px;
+    no-repeat scroll 97% 12px;
 }
 
 .form-field-euro {
   background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
-    no-repeat scroll 97% 4px;
+    no-repeat scroll 97% 12px;
 }
 
 textarea {
   width: 100%;
-  height: 50px;
+  height: 230px;
   padding: 8px;
+  margin-top: 5px;
   border-radius: 5px;
   border: 1px solid $primary-color;
   background: $background-color;
@@ -113,7 +109,7 @@ textarea {
 
 .image-box {
   max-width: 528px;
-  margin-top: 38px;
+  margin-top: 40px;
   width: 100%;
   height: 320px;
   border: solid 1px $black;
@@ -154,18 +150,6 @@ textarea {
   display: none;
 }
 
-textarea {
-  padding-top: 15px;
-  margin-top: 5px;
-  width: 100%;
-  height: 230px;
-}
-
-input[name="sellbuy"] {
-  margin-top: 10px;
-  accent-color: $black;
-}
-
 .register-section {
   display: flex;
   justify-content: space-between;
@@ -203,8 +187,8 @@ button {
 }
 
 .image-data {
-  width: 105px;
-  height: 105px;
+  width: 100%;
+  height: 100%;
 }
 
 .count {
@@ -221,31 +205,6 @@ button {
   height: 40px;
   border-radius: 50%;
 }
-#btn-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 32px;
-}
-#register-btn,
-#cancel-btn {
-  width: 150px;
-  height: 50px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 25px;
-}
-#register-btn {
-  background-color: $secondary-color;
-  color: $primary-color;
-  border: none;
-  margin-right: 8px;
-}
-#cancel-btn {
-  background-color: $background-color;
-  border: 1px solid $primary-color;
-  margin-left: 8px;
-}
 
 .warning-container {
   display: flex;
@@ -257,126 +216,9 @@ button {
   font-size: 1.2rem;
 }
 
-@media (max-width: 768px) {
-  .layout-iwant {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-  }
-
-  .layout-radio-button {
-    display: flex;
-    justify-content: space-between;
-    width: 40%;
-    margin-top: 30px;
-  }
-
-  .layout-input {
-    display: inline-block;
-    width: 100%;
-  }
-
-  .row > * {
-    width: 50%;
-    display: inline-block;
-  }
-
-  .row-button {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .text-button-radio {
-    font-size: 1.2rem;
-  }
-
-  .text-type {
-    font-size: 1.2rem;
-    height: 30px;
-  }
-
-  .text-type-two {
-    padding-top: 10px;
-    font-size: 1.2rem;
-    height: 30px;
-  }
-
+@media screen and (max-width: 768px) {
   .form-field {
     font-size: 1.2rem;
-  }
-
-  .form-field,
-  textarea {
-    width: 100%;
-    height: 55px;
-    font-size: 1.2rem;
-    padding-left: 15px;
-    margin-bottom: 10px;
-    border: 1px solid $primary-color;
-    background: $background-color;
-    background-color: $background-color;
-    -moz-appearance: none; /* Firefox */
-    -webkit-appearance: none; /* Safari and Chrome */
-    appearance: none;
-  }
-
-  .form-field-arrow {
-    background: url(https://img.icons8.com/android/24/null/sort-down.png)
-      no-repeat scroll 97% 16px;
-  }
-
-  .form-field-euro {
-    background: url(https://img.icons8.com/metro/26/null/euro-pound-exchange.png)
-      no-repeat scroll 97% 16px;
-  }
-
-  .box-image {
-    position: relative;
-    width: 100%;
-    height: 372px;
-    margin-top: 40px;
-    background-color: #e7e7e7;
-  }
-
-  .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 15px;
-    width: 47%;
-    height: 50px;
-    border-radius: 40px;
-    font-size: 1.5rem;
-    font-style: normal;
-    border: none;
-  }
-
-  .image-button {
-    height: auto;
-    font-size: 1.2rem;
-    background-color: #d9d9d9;
-    border-radius: 10px;
-    font-weight: 500;
-    cursor: pointer;
-  }
-
-  .button-cancel {
-    background: $background-color;
-    color: $primary-color;
-    border: 1px solid $primary-color;
-  }
-
-  .button-register {
-    background: $primary-color;
-    color: $background-color;
-  }
-
-  .image-data {
-    position: relative;
-    width: 100%;
-    height: 369px;
-    border-radius: 5px;
   }
 
   .count {
@@ -398,5 +240,55 @@ button {
     padding-top: 10px;
     color: $secondary-color;
     font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-field,
+  textarea,
+  .image-box {
+    background-color: white;
+    border: 1px solid black;
+  }
+
+  .input-layout {
+    flex-direction: row;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .image-section {
+    width: 100%;
+  }
+
+  .input-section {
+    padding-right: 12px;
+    width: 100%;
+  }
+
+  .input-layout {
+    margin-bottom: 20px;
+  }
+
+  .image-text {
+    display: block;
+  }
+
+  .description-text {
+    display: block;
+  }
+
+  .image-box {
+    margin-top: 5px;
+  }
+
+  .input-span {
+    width: 100px;
+  }
+
+  .radio-btn {
+    margin-right: min(20px, 5%);
   }
 }
