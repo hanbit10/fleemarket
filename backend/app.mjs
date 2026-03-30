@@ -101,12 +101,15 @@ app.use((error, req, res, next) => {
 app.use(express.static(path.join(currentDirectory,"public")));
 
 app.get("*", (req, res) => {
-  const currentModuleURL = import.meta.url;
+  // const currentModuleURL = import.meta.url;
 
-  // Use the new URL() constructor to extract the directory path
-  const currentDirectory = path.dirname(
-    fileURLToPath(new URL(currentModuleURL))
-  );
+  // // Use the new URL() constructor to extract the directory path
+  // const currentDirectory = path.dirname(
+  //   fileURLToPath(new URL(currentModuleURL))
+  // );
+  if (req.url.startsWith('/card') || req.url.startsWith('/user') || req.url.startsWith('/login')) {
+    return next();
+  }
   res.sendFile(path.join(currentDirectory, "public", "index.html"));
 });
 export default app;
