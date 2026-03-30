@@ -98,7 +98,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.use(express.static(path.join(currentDirectory,"public")));
+app.use(express.static(path.join(currentDirectory,"dist")));
 
 app.get("*", (req, res) => {
   // const currentModuleURL = import.meta.url;
@@ -110,6 +110,6 @@ app.get("*", (req, res) => {
   if (req.url.startsWith('/card') || req.url.startsWith('/user') || req.url.startsWith('/login')) {
     return next();
   }
-  res.sendFile(path.join(currentDirectory, "public", "index.html"));
+  res.sendFile(path.join(currentDirectory, "dist", "index.html"));
 });
 export default app;
