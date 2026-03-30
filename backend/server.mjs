@@ -5,7 +5,7 @@ import app from "./app.mjs";
 import mongoose from "mongoose";
 import express from "express";
 
-const port = PORT;
+const port = 3000;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Server!" });
