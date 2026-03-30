@@ -11,7 +11,6 @@ import MongoStore from "connect-mongo";
 import userRoutes from "./server/api/routes/user.mjs";
 import productCardRoutes from "./server/api/routes/productCard.mjs";
 import path from "path";
-import { fileURLToPath } from "url";
 
 const app = express();
 
@@ -99,18 +98,15 @@ app.use((error, req, res, next) => {
   });
 });
 
+const currentModuleURL = import.meta.url;
+const currentDirectory = path.dirname(fileURLToPath(currentModuleURL));
+
 app.use(express.static(path.join(currentDirectory,"dist")));
 
 app.get("*", (req, res) => {
-  const currentModuleURL = import.meta.url;
+
 
   // Use the new URL() constructor to extract the directory path
-  const currentDirectory = path.dirname(
-    fileURLToPath(new URL(currentModuleURL))
-  );
-  if (req.url.startsWith('/card') || req.url.startsWith('/user') || req.url.startsWith('/login')) {
-    return next();
-  }
   res.sendFile(path.join(currentDirectory, "dist", "index.html"));
 });
 export default app;
