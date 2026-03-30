@@ -11,6 +11,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Hello from Server!" });
 });
 
+app.get("/test", (req, res) => {
+  res.json({ status: "Backend ist erreichbar!" });
+});
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect(MONGODB_URI)

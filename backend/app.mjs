@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const { MONGODB_URI } = process.env;
+const {MONGODB_URI } = process.env;
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -98,7 +98,7 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.use(express.static("public"));
+app.use(express.static(path.join(currentDirectory,"public")));
 
 app.get("*", (req, res) => {
   const currentModuleURL = import.meta.url;
