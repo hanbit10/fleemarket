@@ -1,11 +1,11 @@
 import dotenv from "dotenv";
 dotenv.config();
-const { PORT, MONGODB_URI } = process.env;
+const { MONGODB_URI } = process.env;
 import app from "./app.mjs";
 import mongoose from "mongoose";
 import express from "express";
 
-const port = PORT;
+const port = process.env.PORT;
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Server!" });
