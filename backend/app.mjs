@@ -48,7 +48,7 @@ app.use(morgan("tiny"));
 
 // set CORS
 app.use(cors({
-  origin: 'https://everycent.onrender.com',
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
