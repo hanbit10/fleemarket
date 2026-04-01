@@ -47,7 +47,9 @@ app.use(passport.session());
 app.use(morgan("tiny"));
 
 // set CORS
-app.use(cors());
+app.use(cors({
+  origin: 'https://everycent.onrender.com'
+}));
 
 // Login -  If login success, the value of 'req.isAuthenticated' = true'
 app.post(
