@@ -48,7 +48,9 @@ app.use(morgan("tiny"));
 
 // set CORS
 app.use(cors({
-  origin: 'https://everycent.onrender.com'
+  origin: 'https://everycent.onrender.com',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Login -  If login success, the value of 'req.isAuthenticated' = true'
