@@ -14,6 +14,13 @@ import path from "path";
 
 const app = express();
 
+// set CORS
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // parse requests of content-type - json/urlencoded
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,13 +52,6 @@ app.use(passport.session());
 
 // Set Logging (print the request log on console)
 app.use(morgan("tiny"));
-
-// set CORS
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
 
 // Login -  If login success, the value of 'req.isAuthenticated' = true'
 app.post(
