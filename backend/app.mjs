@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const { MONGODB_URI } = process.env;
+const {MONGODB_URI } = process.env;
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -13,6 +13,13 @@ import productCardRoutes from "./server/api/routes/productCard.mjs";
 import path from "path";
 
 const app = express();
+
+// set CORS
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 // parse requests of content-type - json/urlencoded
 app.use(bodyParser.json());
@@ -45,9 +52,6 @@ app.use(passport.session());
 
 // Set Logging (print the request log on console)
 app.use(morgan("tiny"));
-
-// set CORS
-app.use(cors());
 
 // Login -  If login success, the value of 'req.isAuthenticated' = true'
 app.post(
@@ -98,15 +102,15 @@ app.use((error, req, res, next) => {
   });
 });
 
-app.use(express.static("public"));
+const currentModuleURL = import.meta.url;
+const currentDirectory = path.dirname(fileURLToPath(currentModuleURL));
+
+app.use(express.static(path.join(currentDirectory,"dist")));
 
 app.get("*", (req, res) => {
-  const currentModuleURL = import.meta.url;
+
 
   // Use the new URL() constructor to extract the directory path
-  const currentDirectory = path.dirname(
-    fileURLToPath(new URL(currentModuleURL))
-  );
-  res.sendFile(path.join(currentDirectory, "public", "index.html"));
+  res.sendFile(path.join(currentDirectory, "dist", "index.html"));
 });
 export default app;
