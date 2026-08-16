@@ -1,22 +1,28 @@
 import multer from "multer";
 
-const diskStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./dist/assets/images/productcardImages");
-  },
-  filename: (req, file, cb) => {
-    const fileName = file.originalname;
-    cb(null, fileName);
-  },
-});
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-  const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
-  allowedMimeTypes.includes(file.mimetype) ? cb(null, true) : cb(null, false);
+  const allowedMimeTypes = [
+    "image/png",
+    "image/jpeg",
+    "image/jpg",
+    "image/webp",
+  ];
+
+  if (allowedMimeTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type"), false);
+  }
 };
 
-const storage = multer({ storage: diskStorage, fileFilter: fileFilter }).array(
-  "files"
-);
+const upload = multer({
+  storage,
+  fileFilter,
+  limits: {
+    fileSize: 5 * 1024 * 1024, // 5 MB
+  },
+}).array("files");
 
-export default storage;
+export default upload;
