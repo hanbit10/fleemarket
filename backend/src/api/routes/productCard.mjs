@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
-import * as productCardRepository from "../../../src/api/models/productCard.model.mjs";
-import storage from "../../../src/api/middleware/upload.js";
+import * as productCardRepository from "../models/productCard.model.mjs";
+import storage from "../middleware/upload.js";
 
 // Get all cards
 router.get("/cards", async (req, res) => {
