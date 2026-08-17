@@ -48,7 +48,7 @@ export class AuthService {
     return this.userInfo.username;
   }
   public getUserEmail() {
-    return this.userInfo.email;
+    return this.userInfo.email || sessionStorage.getItem('userEmail') || '';
   }
   public getUserId() {
     // return this.userInfo.id;
@@ -82,19 +82,23 @@ export class AuthService {
   // If login success, update login status information: LoggedIn, UserInfo
   loginUpdate(
     loggedin: boolean,
-    user: { _id: string; email: string; username: string }
+    user: { _id: string; email: string; username: string },
   ) {
     this.setLoggedIn(loggedin);
     this.setUserInfo(user);
+
     if (loggedin) {
       sessionStorage.setItem('loginStatus', 'loggedIn');
-      sessionStorage.setItem('userId', this.getUserId());
+      sessionStorage.setItem('userId', user._id);
+      sessionStorage.setItem('userEmail', user.email);
     }
   }
 
   logoutUser() {
     sessionStorage.removeItem('loginStatus');
     sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('userEmail');
+
     return this.http.post<any>(`${BASE_URL}/logout`, null);
   }
 }
