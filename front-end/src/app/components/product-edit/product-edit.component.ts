@@ -1,13 +1,14 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CardsService } from 'src/app/services/cards.service';
-import { Product } from 'src/app/models/product';
+// import { CardsService } from 'src/app/services/cards.service';
+import { CardsService } from '../../services/cards.service';
+import { Product } from '../../models/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.scss']
+  styleUrls: ['./product-edit.component.scss'],
 })
 export class ProductEditComponent implements OnInit {
   tradeOptionRadioButton = ['sell', 'buy', 'freecycle'];
@@ -55,7 +56,7 @@ export class ProductEditComponent implements OnInit {
   selectedFiles?: FileList;
   previews: string[] = [];
   imagename: string[] = [];
-  multipleImages: string[] = [];
+  multipleImages: File[] = [];
   counts: boolean;
   numberOfFiles: number;
   isDataIncorrect: boolean = false;
@@ -65,15 +66,15 @@ export class ProductEditComponent implements OnInit {
     private cardsService: CardsService,
     private activatedRoute: ActivatedRoute,
     private _auth: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params['productId'])
         cardsService.getProduct(params['productId']).subscribe((editCard) => {
-          this.products = editCard
-          this.imagePreview()
-        })
-    })
+          this.products = editCard;
+          this.imagePreview();
+        });
+    });
   }
 
   ngOnInit(): void {
@@ -94,27 +95,21 @@ export class ProductEditComponent implements OnInit {
   onFileSelect(event: any): void {
     this.selectedFiles = event.target.files;
     this.numberOfFiles += this.selectedFiles.length;
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      let reader: FileReader;
+
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      this.multipleImages = Array.from(this.selectedFiles);
+
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        reader = new FileReader();
-        this.multipleImages = event.target.files;
-        this.imagename[i] =
-          '../../assets/images/productcardImages/' + event.target.files[i].name;
+        const reader = new FileReader();
+
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
       }
-      if (this.numberOfFiles <= 1) {
-        this.counts = false;
-      } else {
-        this.counts = true;
-      }
-      //reader.readAsDataURL(this.selectedFiles[0]);
-      //this.products.imageUrl = this.imagename;
-      for (let i = 0; i < this.imagename.length; i++) {
-        this.products.imageUrl[this.products.imageUrl.length] = this.imagename[i];
-      }
+
+      this.counts = this.numberOfFiles > 1;
     }
   }
 
@@ -127,76 +122,96 @@ export class ProductEditComponent implements OnInit {
   }
 
   inputValid(): boolean {
-    const text =
-      (this.products != undefined &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price != undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'buy' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'freecycle' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined)
-    return text;
+    if (
+      !this.products.title ||
+      !this.products.category ||
+      !this.products.district ||
+      !this.products.description ||
+      this.multipleImages.length === 0
+    ) {
+      return false;
+    }
+
+    if (
+      this.products.dealType === 'sell' &&
+      this.products.price === undefined
+    ) {
+      return false;
+    }
+
+    return true;
   }
 
   updateCard(): void {
     if (!this.inputValid()) {
       this.isDataIncorrect = true;
-      this.warningMsg = "You must fill out!";
+      this.warningMsg = 'You must fill out!';
+      return;
     }
-    else if (this.inputValid() && confirm("Are you sure you want to change your post?")) {
-      this.isDataIncorrect = false;
+
+    if (!confirm('Are you sure you want to change your post?')) {
+      return;
+    }
+
+    this.isDataIncorrect = false;
+
+    const updateProduct = (imageUrls: string[]) => {
       const data = {
         title: this.products.title,
         description: this.products.description,
-        price: this.products.price,
+        price: this.products.price ?? 0,
         category: this.products.category,
-        imageUrl: this.products.imageUrl,
+        imageUrl: imageUrls,
         district: this.products.district,
         dealType: this.products.dealType,
         user: this.products.user,
-        //contact: this.products.contact,
       };
-      if (this.products.price == undefined) {
-        this.products.price = 0;
-        data.price = this.products.price;
-      }
+
       this.cardsService.update(this.products._id, data).subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate(['mypage'])
+          this.router.navigate(['mypage']);
         },
         error: (error) => {
           console.log(error);
         },
       });
-      const formData = new FormData();
+    };
 
-      for (let imgs of this.multipleImages) {
-        formData.append('files', imgs);
-        this.cardsService.createFile(formData);
-      }
+    // No new images selected
+    if (!this.multipleImages || this.multipleImages.length === 0) {
+      updateProduct(this.products.imageUrl);
+      return;
     }
+
+    // Upload new images to S3
+    const formData = new FormData();
+
+    for (const image of this.multipleImages) {
+      formData.append('files', image);
+    }
+
+    this.cardsService.createFile(formData).subscribe({
+      next: (response: any) => {
+        const imageUrls = response.files.map((file: any) => file.location);
+
+        updateProduct(imageUrls);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   cancelAlert() {
-    if (confirm("Your changes could not be saved. Are you sure you want to cancel?")) {
-      this.router.navigate(['mypage'])
+    if (
+      confirm(
+        'Your changes could not be saved. Are you sure you want to cancel?',
+      )
+    ) {
+      this.router.navigate(['mypage']);
     } else {
-      this.router.navigate([`/edit/${this.products._id}`])
+      this.router.navigate([`/edit/${this.products._id}`]);
     }
   }
 }

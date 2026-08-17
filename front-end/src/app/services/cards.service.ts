@@ -25,13 +25,8 @@ export class CardsService {
     return this._http.post<Product>(`${BASE_URL}/card/register`, data);
   }
 
-  createFile(data: FormData): void {
-    console.log(data);
-    this._http
-      .post<any>(`${BASE_URL}/card/register/image`, data)
-      .subscribe((res) => {
-        console.log(res);
-      });
+  createFile(data: FormData): Observable<any> {
+    return this._http.post<any>(`${BASE_URL}/card/register/image`, data);
   }
 
   update(id: any, data: any): Observable<Product> {
@@ -51,7 +46,7 @@ export class CardsService {
           return product.title.toLowerCase().includes(query);
           // || product.description.toLowerCase().includes(query)
         });
-      })
+      }),
     );
   }
   findByUser(userId: string): Observable<Product[]> {

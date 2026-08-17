@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 const { MONGODB_URI } = process.env;
-import app from "./app.mjs";
+import app from "../src/app.mjs";
 import mongoose from "mongoose";
 import express from "express";
 
