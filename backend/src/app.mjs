@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-const {MONGODB_URI } = process.env;
+const { MONGODB_URI } = process.env;
 import express from "express";
 import morgan from "morgan";
 import bodyParser from "body-parser";
@@ -8,25 +8,27 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import MongoStore from "connect-mongo";
-import userRoutes from "./server/api/routes/user.mjs";
-import productCardRoutes from "./server/api/routes/productCard.mjs";
+import userRoutes from "../src/api/routes/user.mjs";
+import productCardRoutes from "../src/api/routes/productCard.mjs";
 import path from "path";
 
 const app = express();
 
 // set CORS
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 
 // parse requests of content-type - json/urlencoded
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport config
-import passportconfig from "./server/config/passport.mjs";
+import passportconfig from "../src/config/passport.mjs";
 import { fileURLToPath } from "url";
 passportconfig(passport);
 
@@ -43,7 +45,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 3, // 3hours
     },
-  })
+  }),
 );
 
 // Passport initialize
@@ -59,7 +61,7 @@ app.post(
   passport.authenticate("local", { failureRedirect: "/loginFail" }),
   (req, res) => {
     res.json({ loggedIn: true, user: req.user });
-  }
+  },
 );
 
 // Logout - If logout success, the value of 'req.isAuthenticated' = 'false'
@@ -105,11 +107,9 @@ app.use((error, req, res, next) => {
 const currentModuleURL = import.meta.url;
 const currentDirectory = path.dirname(fileURLToPath(currentModuleURL));
 
-app.use(express.static(path.join(currentDirectory,"dist")));
+app.use(express.static(path.join(currentDirectory, "dist")));
 
 app.get("*", (req, res) => {
-
-
   // Use the new URL() constructor to extract the directory path
   res.sendFile(path.join(currentDirectory, "dist", "index.html"));
 });

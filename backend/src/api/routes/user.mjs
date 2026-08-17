@@ -1,7 +1,7 @@
 import express from 'express';
 const router = express.Router();
 import bcrypt from 'bcryptjs';
-import User from '../models/user.model.mjs';
+import User from '../../../server/api/models/user.model.mjs';
 
 // Register new user
 // Password is hashed through bcrypto.

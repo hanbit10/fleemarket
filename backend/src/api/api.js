@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user.model");
+import { User } from "../api/models/user.model.mjs";
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { MONGODB_URI } = process.env;
