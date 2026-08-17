@@ -10,7 +10,6 @@ import passport from "passport";
 import MongoStore from "connect-mongo";
 import userRoutes from "../src/api/routes/user.mjs";
 import productCardRoutes from "../src/api/routes/productCard.mjs";
-import path from "path";
 
 const app = express();
 
@@ -29,7 +28,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport config
 import passportconfig from "../src/config/passport.mjs";
-import { fileURLToPath } from "url";
 passportconfig(passport);
 
 // Set Express Session
@@ -104,13 +102,4 @@ app.use((error, req, res, next) => {
   });
 });
 
-const currentModuleURL = import.meta.url;
-const currentDirectory = path.dirname(fileURLToPath(currentModuleURL));
-
-app.use(express.static(path.join(currentDirectory, "dist")));
-
-app.get("*", (req, res) => {
-  // Use the new URL() constructor to extract the directory path
-  res.sendFile(path.join(currentDirectory, "dist", "index.html"));
-});
 export default app;
