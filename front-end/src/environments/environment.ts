@@ -4,7 +4,7 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://everycent-backend.onrender.com'
+  apiUrl: 'https://api.everycent-sparen.de',
 };
 
 /*
