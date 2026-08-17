@@ -80,10 +80,9 @@ export class AuthService {
   }
 
   // If login success, update login status information: LoggedIn, UserInfo
-  loginUpdate(
-    loggedin: boolean,
-    user: { _id: string; email: string; username: string },
-  ) {
+  loginUpdate(loggedin: boolean, user: any) {
+    console.log('LOGIN USER:', user);
+
     this.setLoggedIn(loggedin);
     this.setUserInfo(user);
 
@@ -93,7 +92,6 @@ export class AuthService {
       sessionStorage.setItem('userEmail', user.email);
     }
   }
-
   logoutUser() {
     sessionStorage.removeItem('loginStatus');
     sessionStorage.removeItem('userId');
