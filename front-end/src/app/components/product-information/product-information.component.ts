@@ -136,51 +136,62 @@ export class ProductInformationComponent implements OnInit {
   }
 
   saveProduct(): void {
-    console.log(this.inputValid);
     if (!this.inputValid()) {
       this.isDataIncorrect = true;
       this.warningMsg = 'You must fill out!';
-    } else if (
-      this.inputValid() &&
-      confirm('Are you sure you want to save your post?')
-    ) {
-      this.isDataIncorrect = false;
-
-      const data = {
-        title: this.products.title,
-        description: this.products.description,
-        price: this.products.price,
-        category: this.products.category,
-        imageUrl: this.products.imageUrl,
-        district: this.products.district,
-        dealType: this.products.dealType,
-        user: this.products.user,
-        contact: this.products.user.email,
-      };
-
-      if (this.products.price == undefined) {
-        this.products.price = 0;
-        data.price = this.products.price;
-      }
-      this.cardsService.create(data).subscribe({
-        next: (response) => {
-          console.log(response);
-          this.router.navigate(['']);
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
-
-      const formData = new FormData();
-
-      for (let imgs of this.multipleImages) {
-        formData.append('files', imgs);
-        this.cardsService.createFile(formData);
-      }
-    } else {
-      this.router.navigate(['post']);
+      return;
     }
+
+    if (!confirm('Are you sure you want to save your post?')) {
+      this.router.navigate(['post']);
+      return;
+    }
+
+    this.isDataIncorrect = false;
+
+    const formData = new FormData();
+
+    for (const img of this.multipleImages) {
+      formData.append('files', img);
+    }
+
+    // Upload images FIRST
+    this.cardsService.createFile(formData).subscribe({
+      next: (response: any) => {
+        console.log('S3 upload:', response);
+
+        this.products.imageUrl = response.files.map(
+          (file: any) => file.location,
+        );
+
+        const data = {
+          title: this.products.title,
+          description: this.products.description,
+          price: this.products.price ?? 0,
+          category: this.products.category,
+          imageUrl: this.products.imageUrl,
+          district: this.products.district,
+          dealType: this.products.dealType,
+          user: this.products.user,
+          contact: this.products.user.email,
+        };
+
+        // Save product AFTER S3 upload
+        this.cardsService.create(data).subscribe({
+          next: (response) => {
+            console.log(response);
+            this.router.navigate(['']);
+          },
+          error: (error) => {
+            console.log(error);
+          },
+        });
+      },
+
+      error: (error) => {
+        console.log('S3 upload failed:', error);
+      },
+    });
   }
 
   cancelAlert() {
