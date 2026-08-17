@@ -88,29 +88,24 @@ export class ProductInformationComponent implements OnInit {
   }
 
   inputValid(): boolean {
-    const text =
-      (this.products != undefined &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price != undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'buy' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'freecycle' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined);
-    return text;
+    if (
+      !this.products.title ||
+      !this.products.category ||
+      !this.products.district ||
+      !this.products.description ||
+      this.multipleImages.length === 0
+    ) {
+      return false;
+    }
+
+    if (
+      this.products.dealType === 'sell' &&
+      this.products.price === undefined
+    ) {
+      return false;
+    }
+
+    return true;
   }
 
   onFileSelect(event: any): void {

@@ -25,8 +25,8 @@ export class CardsService {
     return this._http.post<Product>(`${BASE_URL}/card/register`, data);
   }
 
-  createFile(data: FormData): Observable<Product> {
-    return this._http.post<Product>(`${BASE_URL}/card/register/image`, data);
+  createFile(data: FormData): Observable<any> {
+    return this._http.post<any>(`${BASE_URL}/card/register/image`, data);
   }
 
   update(id: any, data: any): Observable<Product> {
