@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CardsService } from 'src/app/services/cards.service';
-import { Product } from 'src/app/models/product';
+import { CardsService } from '../../services/cards.service';
+import { Product } from '../../models/product';
 import { getNumberOfCurrencyDigits } from '@angular/common';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ThisReceiver } from '@angular/compiler';
 
@@ -50,14 +50,17 @@ export class ProductInformationComponent implements OnInit {
   ];
 
   products: Product = {
-    user: { userId: this._authService.getUserId(), email: this._authService.getUserEmail() }
+    user: {
+      userId: this._authService.getUserId(),
+      email: this._authService.getUserEmail(),
+    },
   };
 
   screenMode: string;
   selectedFiles?: FileList;
   previews: string[] = [];
   imagename: string[] = [];
-  multipleImages: string[] = [];
+  multipleImages: File[] = [];
   counts: boolean;
   numberOfFiles: number = null;
   isDataIncorrect: boolean = false;
@@ -66,8 +69,8 @@ export class ProductInformationComponent implements OnInit {
   constructor(
     private cardsService: CardsService,
     private _authService: AuthService,
-    private router: Router
-  ) { }
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     let screenWidth = window.innerWidth;
@@ -106,7 +109,7 @@ export class ProductInformationComponent implements OnInit {
         this.products.district != '' &&
         this.products.price == undefined &&
         this.products.description != '' &&
-        this.products.imageUrl != undefined)
+        this.products.imageUrl != undefined);
     return text;
   }
 
@@ -114,24 +117,21 @@ export class ProductInformationComponent implements OnInit {
     this.selectedFiles = event.target.files;
     this.numberOfFiles = this.selectedFiles.length;
     this.previews = [];
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      let reader: FileReader;
+
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      this.multipleImages = Array.from(this.selectedFiles);
+
       for (let i = 0; i < this.numberOfFiles; i++) {
-        reader = new FileReader();
-        this.multipleImages = event.target.files;
-        this.imagename[i] =
-          '../../assets/images/productcardImages/' + event.target.files[i].name;
+        const reader = new FileReader();
+
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
       }
-      if (this.numberOfFiles <= 1) {
-        this.counts = false;
-      } else {
-        this.counts = true;
-      }
-      reader.readAsDataURL(this.selectedFiles[0]);
-      this.products.imageUrl = this.imagename;
+
+      this.counts = this.numberOfFiles > 1;
     }
   }
 
@@ -139,9 +139,11 @@ export class ProductInformationComponent implements OnInit {
     console.log(this.inputValid);
     if (!this.inputValid()) {
       this.isDataIncorrect = true;
-      this.warningMsg = "You must fill out!";
-    }
-    else if (this.inputValid() && confirm("Are you sure you want to save your post?")) {
+      this.warningMsg = 'You must fill out!';
+    } else if (
+      this.inputValid() &&
+      confirm('Are you sure you want to save your post?')
+    ) {
       this.isDataIncorrect = false;
 
       const data = {
@@ -163,7 +165,7 @@ export class ProductInformationComponent implements OnInit {
       this.cardsService.create(data).subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate([''])
+          this.router.navigate(['']);
         },
         error: (error) => {
           console.log(error);
@@ -177,15 +179,19 @@ export class ProductInformationComponent implements OnInit {
         this.cardsService.createFile(formData);
       }
     } else {
-      this.router.navigate(['post'])
+      this.router.navigate(['post']);
     }
   }
 
   cancelAlert() {
-    if (confirm("Your changes could not be saved. Are you sure you want to cancel?")) {
-      this.router.navigate([''])
+    if (
+      confirm(
+        'Your changes could not be saved. Are you sure you want to cancel?',
+      )
+    ) {
+      this.router.navigate(['']);
     } else {
-      this.router.navigate(['post'])
+      this.router.navigate(['post']);
     }
   }
 }

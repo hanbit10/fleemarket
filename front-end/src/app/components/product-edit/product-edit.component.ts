@@ -1,13 +1,14 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { CardsService } from 'src/app/services/cards.service';
-import { Product } from 'src/app/models/product';
+// import { CardsService } from 'src/app/services/cards.service';
+import { CardsService } from '../../services/cards.service';
+import { Product } from '../../models/product';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.scss']
+  styleUrls: ['./product-edit.component.scss'],
 })
 export class ProductEditComponent implements OnInit {
   tradeOptionRadioButton = ['sell', 'buy', 'freecycle'];
@@ -55,7 +56,7 @@ export class ProductEditComponent implements OnInit {
   selectedFiles?: FileList;
   previews: string[] = [];
   imagename: string[] = [];
-  multipleImages: string[] = [];
+  multipleImages: File[] = [];
   counts: boolean;
   numberOfFiles: number;
   isDataIncorrect: boolean = false;
@@ -65,15 +66,15 @@ export class ProductEditComponent implements OnInit {
     private cardsService: CardsService,
     private activatedRoute: ActivatedRoute,
     private _auth: AuthService,
-    private router: Router
+    private router: Router,
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params['productId'])
         cardsService.getProduct(params['productId']).subscribe((editCard) => {
-          this.products = editCard
-          this.imagePreview()
-        })
-    })
+          this.products = editCard;
+          this.imagePreview();
+        });
+    });
   }
 
   ngOnInit(): void {
@@ -94,27 +95,21 @@ export class ProductEditComponent implements OnInit {
   onFileSelect(event: any): void {
     this.selectedFiles = event.target.files;
     this.numberOfFiles += this.selectedFiles.length;
-    if (this.selectedFiles && this.selectedFiles[0]) {
-      let reader: FileReader;
+
+    if (this.selectedFiles && this.selectedFiles.length > 0) {
+      this.multipleImages = Array.from(this.selectedFiles);
+
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        reader = new FileReader();
-        this.multipleImages = event.target.files;
-        this.imagename[i] =
-          '../../assets/images/productcardImages/' + event.target.files[i].name;
+        const reader = new FileReader();
+
         reader.onload = (e: any) => {
           this.previews.push(e.target.result);
         };
+
+        reader.readAsDataURL(this.selectedFiles[i]);
       }
-      if (this.numberOfFiles <= 1) {
-        this.counts = false;
-      } else {
-        this.counts = true;
-      }
-      //reader.readAsDataURL(this.selectedFiles[0]);
-      //this.products.imageUrl = this.imagename;
-      for (let i = 0; i < this.imagename.length; i++) {
-        this.products.imageUrl[this.products.imageUrl.length] = this.imagename[i];
-      }
+
+      this.counts = this.numberOfFiles > 1;
     }
   }
 
@@ -148,16 +143,18 @@ export class ProductEditComponent implements OnInit {
         this.products.district != '' &&
         this.products.price == undefined &&
         this.products.description != '' &&
-        this.products.imageUrl != undefined)
+        this.products.imageUrl != undefined);
     return text;
   }
 
   updateCard(): void {
     if (!this.inputValid()) {
       this.isDataIncorrect = true;
-      this.warningMsg = "You must fill out!";
-    }
-    else if (this.inputValid() && confirm("Are you sure you want to change your post?")) {
+      this.warningMsg = 'You must fill out!';
+    } else if (
+      this.inputValid() &&
+      confirm('Are you sure you want to change your post?')
+    ) {
       this.isDataIncorrect = false;
       const data = {
         title: this.products.title,
@@ -177,7 +174,7 @@ export class ProductEditComponent implements OnInit {
       this.cardsService.update(this.products._id, data).subscribe({
         next: (response) => {
           console.log(response);
-          this.router.navigate(['mypage'])
+          this.router.navigate(['mypage']);
         },
         error: (error) => {
           console.log(error);
@@ -193,10 +190,14 @@ export class ProductEditComponent implements OnInit {
   }
 
   cancelAlert() {
-    if (confirm("Your changes could not be saved. Are you sure you want to cancel?")) {
-      this.router.navigate(['mypage'])
+    if (
+      confirm(
+        'Your changes could not be saved. Are you sure you want to cancel?',
+      )
+    ) {
+      this.router.navigate(['mypage']);
     } else {
-      this.router.navigate([`/edit/${this.products._id}`])
+      this.router.navigate([`/edit/${this.products._id}`]);
     }
   }
 }
