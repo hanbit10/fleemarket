@@ -64,9 +64,11 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/register/image", storage, async (req, res) => {
-  console.log(req.body);
   console.log(req.files);
-  res.json({ message: "Successfully uploaded files" });
+
+  res.status(200).json({
+    files: req.files,
+  });
 });
 
 // Update the card
