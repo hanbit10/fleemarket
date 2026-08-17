@@ -159,6 +159,12 @@ export class ProductInformationComponent implements OnInit {
           (file: any) => file.location,
         );
 
+        const email = this._authService.getUserEmail();
+        const userId = this._authService.getUserId();
+
+        console.log('EMAIL:', email);
+        console.log('USER ID:', userId);
+
         const data = {
           title: this.products.title,
           description: this.products.description,
@@ -168,8 +174,8 @@ export class ProductInformationComponent implements OnInit {
           district: this.products.district,
           dealType: this.products.dealType,
           user: {
-            userId: this._authService.getUserId(),
-            email: this._authService.getUserEmail(),
+            userId: userId,
+            email: email,
           },
           contact: this.products.user.email,
         };
