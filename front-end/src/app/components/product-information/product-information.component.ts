@@ -167,7 +167,10 @@ export class ProductInformationComponent implements OnInit {
           imageUrl: this.products.imageUrl,
           district: this.products.district,
           dealType: this.products.dealType,
-          user: this.products.user,
+          user: {
+            userId: this._authService.getUserId(),
+            email: this._authService.getUserEmail(),
+          },
           contact: this.products.user.email,
         };
 
