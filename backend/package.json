@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/server.mjs",
-    "dev": "nodemon src/server.mjs",
+    "start": "node --env-file=.env src/server.mjs",
+    "dev": "nodemon --exec \"node --env-file=.env\" src/server.mjs",
     "build": "npm install"
   },
   "dependencies": {
