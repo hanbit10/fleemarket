@@ -122,55 +122,51 @@ export class ProductEditComponent implements OnInit {
   }
 
   inputValid(): boolean {
-    const text =
-      (this.products != undefined &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price != undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'buy' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined) ||
-      (this.products.dealType == 'freecycle' &&
-        this.products.title != undefined &&
-        this.products.category != '' &&
-        this.products.district != '' &&
-        this.products.price == undefined &&
-        this.products.description != '' &&
-        this.products.imageUrl != undefined);
-    return text;
+    if (
+      !this.products.title ||
+      !this.products.category ||
+      !this.products.district ||
+      !this.products.description ||
+      this.multipleImages.length === 0
+    ) {
+      return false;
+    }
+
+    if (
+      this.products.dealType === 'sell' &&
+      this.products.price === undefined
+    ) {
+      return false;
+    }
+
+    return true;
   }
 
   updateCard(): void {
     if (!this.inputValid()) {
       this.isDataIncorrect = true;
       this.warningMsg = 'You must fill out!';
-    } else if (
-      this.inputValid() &&
-      confirm('Are you sure you want to change your post?')
-    ) {
-      this.isDataIncorrect = false;
+      return;
+    }
+
+    if (!confirm('Are you sure you want to change your post?')) {
+      return;
+    }
+
+    this.isDataIncorrect = false;
+
+    const updateProduct = (imageUrls: string[]) => {
       const data = {
         title: this.products.title,
         description: this.products.description,
-        price: this.products.price,
+        price: this.products.price ?? 0,
         category: this.products.category,
-        imageUrl: this.products.imageUrl,
+        imageUrl: imageUrls,
         district: this.products.district,
         dealType: this.products.dealType,
         user: this.products.user,
-        //contact: this.products.contact,
       };
-      if (this.products.price == undefined) {
-        this.products.price = 0;
-        data.price = this.products.price;
-      }
+
       this.cardsService.update(this.products._id, data).subscribe({
         next: (response) => {
           console.log(response);
@@ -180,13 +176,31 @@ export class ProductEditComponent implements OnInit {
           console.log(error);
         },
       });
-      const formData = new FormData();
+    };
 
-      for (let imgs of this.multipleImages) {
-        formData.append('files', imgs);
-        this.cardsService.createFile(formData);
-      }
+    // No new images selected
+    if (!this.multipleImages || this.multipleImages.length === 0) {
+      updateProduct(this.products.imageUrl);
+      return;
     }
+
+    // Upload new images to S3
+    const formData = new FormData();
+
+    for (const image of this.multipleImages) {
+      formData.append('files', image);
+    }
+
+    this.cardsService.createFile(formData).subscribe({
+      next: (response: any) => {
+        const imageUrls = response.files.map((file: any) => file.location);
+
+        updateProduct(imageUrls);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   cancelAlert() {
